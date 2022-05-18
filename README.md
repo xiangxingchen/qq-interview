@@ -1,16 +1,16 @@
 # QQ信息查询功能
 
-### 1、`npm start`
+---------
+
+### 1、npm start
 本地运行`npm start` 启动\
 启动后会自动在浏览器打开[http://localhost:3000](http://localhost:3000)
 
-
-### 2、`npm test`
+### 2、npm test
 运行`npm test`，运行本地测试文件，可以动态监听本地测试文件，实时输出测试结果。
 
-### 3、`npm run build`
+### 3、npm run build
 运行`npm run build`对项目进行打包
-
 
 ### 4、相关技术
 - [React](https://reactjs.org/)
@@ -19,7 +19,6 @@
 
 ### 5、目录规范
 ```
-.
 ├── package.json
 ├── tsconfig.ts
 ├── .gitignore
