@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { debounce, isEmpty } from 'lodash'
-import { isQQ, ErrorCode } from './util'
-import { QQInfo } from './components/QQCard/interface'
-import QQCard from './components/QQCard'
-import { getQQInfo } from "./services/qq"
+import { isQQ, ErrorCode } from '../util'
+import { QQInfo } from '../components/QQCard/interface'
+import QQCard from '../components/QQCard'
+import { getQQInfo } from "../services/qq"
 import './App.css'
 
 function App() {
