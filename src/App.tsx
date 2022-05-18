@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import {debounce, isEmpty } from 'lodash'
-import { AxiosResponse } from 'axios'
-import './App.css'
-import { isQQ, ErrorCode, getQQInfoUrl, request } from './util'
+import { debounce, isEmpty } from 'lodash'
+import { isQQ, ErrorCode } from './util'
 import { QQInfo } from './components/QQCard/interface'
 import QQCard from './components/QQCard'
+import { getQQInfo } from "./services/qq"
+import './App.css'
 
 function App() {
     const [info, setInfo] = useState<QQInfo | undefined>(undefined)
@@ -31,13 +31,7 @@ function App() {
         }
 
         // 3、查询qq信息
-        const { data, data: { code, msg = '' } }: AxiosResponse<QQInfo> = await request({
-            url: getQQInfoUrl,
-            params:{
-                qq: value
-            }
-        })
-
+        const { data, data: { code, msg = '' } } = await getQQInfo(value)
         if (code === ErrorCode.SUCCESS) {
             setInfo(data)
         } else {
@@ -53,13 +47,15 @@ function App() {
             <div>
                 <div>
                     <label htmlFor="qq">QQ</label>
-                    <input className="search" type="text" name='qq' onChange={onChange} placeholder="请输入QQ号"/>
+                    <input className="search" type="text" name='qq' onChange={ onChange } placeholder="请输入QQ号"/>
                 </div>
-                <div className="form-item-error">{err}</div>
+                <div className="form-item-error">{ err }</div>
             </div>
 
-            {loading  && <div className="loading-container"><div className="loading"></div></div> }
-            {!loading && <QQCard info={info} />}
+            { loading && <div className="loading-container">
+                <div className="loading"></div>
+            </div> }
+            { !loading && <QQCard info={ info }/> }
         </div>
     );
 }
